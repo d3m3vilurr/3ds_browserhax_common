@@ -55,15 +55,25 @@ if(!isset($browserver))
 	} else if(strstr($ua, "1.7552"))//1.7552 v3075/5.0.0-11 / v3088/7.0.0-13 (v3088 main ncch is the same as v3075, only the manual CFA was updated)
 	{
 		$browserver = 3;
+	} else if(strstr($ua, "1.7567.KR"))//1.7567.KR v4096/7.1.0-16
+	{
+		$browserver = 8;
 	} else if(strstr($ua, "1.7567"))//1.7567 v4096/7.1.0-16
 	{
 		$browserver = 4;
 	} else if(strstr($ua, "1.7585"))//1.7585 v5121/9.5.0-23
 	{
 		$browserver = 5;
+	} else if(strstr($ua, "1.7610.KR"))//1.7610.KR v6149/9.9.0-26
+	{
+		$browserver = 9;
 	} else if(strstr($ua, "1.7610"))//1.7610 v6149/9.9.0-26
 	{
 		$browserver = 6;
+	}
+	else if(strstr($ua, "1.7616.KR"))//1.7616.KR v7168/10.2.0-28
+	{
+		$browserver = 10;
 	}
 	else if(strstr($ua, "1.7616"))//1.7616 v7168/10.2.0-28
 	{
@@ -116,7 +126,7 @@ if($browserver == -1)
 	exit;
 }
 
-if(!($browserver>=1 && $browserver<=7) && !(($browserver & 0x80) && ($browserver>=0x80 && $browserver<=0x88)))
+if(!($browserver>=1 && $browserver<=10) && !(($browserver & 0x80) && ($browserver>=0x80 && $browserver<=0x88)))
 {
 	echo "This browser version is not supported.\n";
 	//error_log("3dsbrowserhax_common.php: BROWSERVER NOT SUPPORTED.");
@@ -637,6 +647,18 @@ else if($browserver == 6)
 else if($browserver == 7)
 {
 	require_once("3dsbrowserhax_rop_spider_usaeurjpn_v7168.php");
+}
+else if($browserver == 8)
+{
+	require_once("3dsbrowserhax_rop_spider_kor_v4096.php");
+}
+else if($browserver == 9)
+{
+	require_once("3dsbrowserhax_rop_spider_kor_v6149.php");
+}
+else if($browserver == 10)
+{
+	require_once("3dsbrowserhax_rop_spider_kor_v7168.php");
 }
 else if($browserver == 0x80)//new3ds
 {
